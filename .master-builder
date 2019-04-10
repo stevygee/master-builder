@@ -1,0 +1,68 @@
+{
+    "env": {
+        "mode": "development"
+    },
+    "browserSync": {
+        "server": "./",
+        "port": 3000,
+        "open": false,
+        "reloadOnRestart": true,
+        "notify": false,
+        "reloadDelay": 0,
+        "ghostMode": false
+    },
+    "clean": {
+        "cleanableTasks": [
+            "images",
+            "templates",
+            "scripts",
+            "styles"
+        ]
+    },
+    "copy": [
+        {
+            "title": "Fonts",
+            "sourceFolder": "./src/fonts",
+            "sourceFiles": ["*.{eot,svg,otf,ttf,woff,woff2}"],
+            "destinationFolder": "./fonts"
+        }
+    ],
+    "cssnano": {
+        "zindex": false,
+        "discardUnused": false,
+        "mergeIdents": false,
+        "reduceIdents": false
+    },
+    "images": {
+        "sourceFiles": ["./src/images/**/*.{jpg,png,gif,svg}"],
+        "destinationFolder": "./images",
+        "watchFiles": ["./src/images/**/*.{jpg,png,gif,svg}"],
+        "cleanFiles": ["./images/*.{jpg,png,gif,svg}"]
+    },
+    "templates": {
+        "sourceFolder": "./src",
+        "sourceFiles": ["./src/*.html"],
+        "contentFile": "./src/content/index.json",
+        "partialsFolder": ["./src/partials"],
+        "destinationFolder": "./",
+        "watchFiles": ["./src/**/*.html", "./src/content/**/*.json"],
+        "cleanFiles": ["./*.html"]
+    },
+    "scripts": {
+        "sourceFiles": ["./src/js/script.js"],
+        "destinationFolder": "./js",
+        "watchFiles": ["./src/js/**/*.js"],
+        "cleanFiles": ["./js/*.{js,map}"]
+    },
+    "styles": {
+        "sourceFiles": ["./src/scss/*.scss"],
+        "destinationFolder": "./css",
+        "watchFiles": ["./src/scss/**/*.scss"],
+        "cleanFiles": ["./css/*.{css,map}"]
+    },
+    "watch": [
+        {"images": ["images"]},
+        {"styles": ["styles"]},
+        {"templates": ["templates"]}
+    ]
+}
