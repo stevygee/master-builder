@@ -5,7 +5,7 @@ A reusable SCSS / JS builder for
 
 heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redaxo-mit-bimmelbam) and [just-build-it](https://github.com/sympletech/just-build-it).
 
-<img src="https://media.giphy.com/media/3ZALZoBtI1KJa/giphy.gif" alt="Lego timelapse" width="256" height="144">
+<img src="https://media.giphy.com/media/3ZALZoBtI1KJa/200w_d.gif" alt="Lego timelapse" width="256" height="144">
 
 ### Getting started
 1. Add scripts and the dependency to your project's package.json:
@@ -46,8 +46,9 @@ How to add as a local dependency:
   }
 ```
 4. ```npm install```
-5. ```npm run install-dependencies```
-6. ```npm start```
+5. Use ```npm run install-dependencies``` to generate a .ldrc file, make sure it contains the absolute path to master-builder
+6. ```npm run install-dependencies```
+7. ```npm start```
 
 Use ```npm run watch-dependencies``` to continously update the package as you make changes.
 
