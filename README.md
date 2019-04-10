@@ -46,8 +46,9 @@ How to add as a local dependency:
   }
 ```
 4. ```npm install```
-5. ```npm run install-dependencies```
-6. ```npm start```
+5. Use ```npm run install-dependencies``` to generate a .ldrc file, make sure it contains the absolute path to master-builder
+6. ```npm run install-dependencies```
+7. ```npm start```
 
 Use ```npm run watch-dependencies``` to continously update the package as you make changes.
 
