@@ -24,6 +24,7 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 Optional: Copy .master-builder file to your project and configure to your needs!
 
 ### To do
+- [ ] Add Webpack
 - [ ] Add JSHint / gulp-jshint
 - [ ] Add SassLint / gulp-sass-lint
 
