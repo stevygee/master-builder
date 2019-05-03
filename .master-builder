@@ -27,7 +27,7 @@
         },
         {
             "title": "Images",
-            "sourceFolder": ["./src/images"],
+            "sourceFolder": "./src/images",
             "sourceFiles": ["*.{jpg,png,gif,svg}"],
             "destinationFolder": "./images"
         }
