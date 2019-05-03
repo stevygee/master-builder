@@ -12,12 +12,14 @@ let tasks = [];
 for (let v of config.copy) {
     const copyTask = () => copy(v.sourceFiles, path.resolve(v.destinationFolder), {
         cwd: v.sourceFolder,
-        parents: true,
-        nodir: true
+        parents: true
     }).then((res) => {
         if (res.length > 0) {
             log(colors.white('Copied ' + v.title + ': ' + colors.magenta(res.length)));
         }
+    }).catch((err) => {
+        // throw error to console
+        log(colors.bold(colors.red(err.name + ': ' + err.message)));
     });
 
     copyTask.displayName = 'copy:' + v.title;
