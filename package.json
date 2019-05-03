@@ -1,5 +1,5 @@
 {
-  "name": "master-builder",
+  "name": "@stevygee/master-builder",
   "version": "0.1.0",
   "description": "A reusable builder to compile es6 and scss from a source directory into a destination directory",
   "bin": {
