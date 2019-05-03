@@ -13,7 +13,6 @@
     },
     "clean": {
         "cleanableTasks": [
-            "images",
             "templates",
             "scripts",
             "styles"
@@ -25,6 +24,12 @@
             "sourceFolder": "./src/fonts",
             "sourceFiles": ["*.{eot,svg,otf,ttf,woff,woff2}"],
             "destinationFolder": "./fonts"
+        },
+        {
+            "title": "Images",
+            "sourceFolder": ["./src/images"],
+            "sourceFiles": ["*.{jpg,png,gif,svg}"],
+            "destinationFolder": "./images"
         }
     ],
     "cssnano": {
@@ -32,12 +37,6 @@
         "discardUnused": false,
         "mergeIdents": false,
         "reduceIdents": false
-    },
-    "images": {
-        "sourceFiles": ["./src/images/**/*.{jpg,png,gif,svg}"],
-        "destinationFolder": "./images",
-        "watchFiles": ["./src/images/**/*.{jpg,png,gif,svg}"],
-        "cleanFiles": ["./images/*.{jpg,png,gif,svg}"]
     },
     "templates": {
         "sourceFolder": "./src",
@@ -61,7 +60,6 @@
         "cleanFiles": ["./css/*.{css,map}"]
     },
     "watch": [
-        {"images": ["images"]},
         {"styles": ["styles"]},
         {"templates": ["templates"]}
     ]

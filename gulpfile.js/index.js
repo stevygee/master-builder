@@ -14,7 +14,6 @@ tasks.development = gulp.series(
     'clean',
     'styles',
     'scripts',
-    'images',
     'templates',
     'copy',
     'watch',
@@ -27,7 +26,6 @@ tasks.production = gulp.series(
     gulp.parallel(
         'styles',
         'scripts',
-        'images',
         'templates',
         'copy'
     )

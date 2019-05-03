@@ -36,7 +36,6 @@
     "gulp": "^4.0.0",
     "gulp-compile-handlebars": "^0.6.1",
     "gulp-count": "^1.0.0",
-    "gulp-imagemin": "^5.0.3",
     "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.2.2",
