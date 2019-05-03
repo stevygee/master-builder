@@ -8,17 +8,13 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 <img src="https://media.giphy.com/media/3ZALZoBtI1KJa/200w_d.gif" alt="Lego timelapse" width="256" height="144">
 
 ### Getting started
-1. Add scripts and the dependency to your project's package.json:
+1. Add scripts to your project's package.json:
 ```
   "scripts": {
     "start": "master-builder"
   },
-  "devDependencies": {
-    ...
-    "master-builder": "git+ssh://git@github.com:stevygee/master-builder.git"
-  }
 ```
-2. ```npm install```
+2. ```npm install @stevygee/master-builder --save-dev```
 3. ```npm start```
 
 Optional: Copy .master-builder file to your project and configure to your needs!
