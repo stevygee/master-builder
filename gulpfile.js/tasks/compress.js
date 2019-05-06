@@ -16,7 +16,7 @@ const readmeTask = (done) => {
 
 	// Put readme in dist root
 	return gulp.src(config.dist.readmeName)
-		.pipe(rename( { prefix: 'gulp-example-' }))
+		.pipe(rename( { prefix: config.pkg.name + '-' }))
 		.on('error', function (err) {
 
 			// mark errors
@@ -48,7 +48,7 @@ const zipTask = (done) => {
 
 	// Compress subfolder
 	return gulp.src(config.dist.archiveFolder + '/**/*', {base: config.dist.archiveFolder})
-		.pipe(zip(config.dist.archiveName))
+		.pipe(zip(config.pkg.name + '.zip'))
 		.on('error', function (err) {
 
 			// mark errors

@@ -69,27 +69,26 @@
             "title": "root",
             "sourceFolder": "./",
             "sourceFiles": ["*.{html,txt}"],
-            "destinationFolder": "./dist/packages/gulp-example"
+            "destinationFolder": "./dist/archive"
         },
         {
             "title": "scripts",
             "sourceFolder": "./js",
             "sourceFiles": ["*.js"],
-            "destinationFolder": "./dist/packages/gulp-example/js"
+            "destinationFolder": "./dist/archive/js"
         },
         {
             "title": "styles",
             "sourceFolder": "./css",
             "sourceFiles": ["*.css"],
-            "destinationFolder": "./dist/packages/gulp-example/css"
+            "destinationFolder": "./dist/archive/css"
         }
     ],
     "dist": {
         "readmeName": "readme.txt",
         "readmeFolder": "./dist",
-        "packageFolder": "./dist/packages/gulp-example",
-        "archiveName": "dist.zip",
-        "archiveFolder": "./dist/packages",
+        "packageFolder": "./dist/archive",
+        "archiveFolder": "./dist",
         "cleanFiles": ["./dist/**/*"]
     }
 }

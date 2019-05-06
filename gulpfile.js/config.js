@@ -8,6 +8,12 @@ const config = JSON.parse(configFile);
 config.env.mode = process.argv[2] || config.env.mode;
 config.env.mode = 'deploy' === config.env.mode ? 'production' : config.env.mode;
 
+// Set package info
+const pkgPath = `${process.cwd()}/package.json`;
+const pkgFile = fs.existsSync(pkgPath) ? fs.readFileSync(pkgPath, 'utf-8') : '{"name":[{}]}';
+const pkg = JSON.parse(pkgFile);
+config.pkg = pkg;
+
 /*console.log('Initializing Master-Builder with the following config:');
 console.log(JSON.stringify(config, null, 2));*/
 
