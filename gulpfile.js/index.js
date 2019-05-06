@@ -36,6 +36,7 @@ tasks.production = gulp.series(
 // define tasks
 gulp.task('development', tasks.development);
 gulp.task('production', tasks.production);
+gulp.task('deploy', tasks.production);
 
 // define default alias (use from ENV)
 gulp.task('default', tasks[config.env.mode]);

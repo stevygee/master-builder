@@ -7,7 +7,8 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "start": "master-builder"
+    "start": "master-builder",
+    "deploy": "master-builder deploy"
   },
   "repository": {
     "type": "git",

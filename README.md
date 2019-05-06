@@ -11,7 +11,8 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 1. Add scripts to your project's package.json:
 ```
   "scripts": {
-    "start": "master-builder"
+    "start": "master-builder",
+    "deploy": "master-builder deploy"
   },
 ```
 2. ```npm install @stevygee/master-builder --save-dev```
