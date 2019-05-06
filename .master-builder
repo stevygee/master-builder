@@ -15,18 +15,19 @@
         "cleanableTasks": [
             "templates",
             "scripts",
-            "styles"
+            "styles",
+            "dist"
         ]
     },
     "copy": [
         {
-            "title": "Fonts",
+            "title": "fonts",
             "sourceFolder": "./src/fonts",
             "sourceFiles": ["*.{eot,svg,otf,ttf,woff,woff2}"],
             "destinationFolder": "./fonts"
         },
         {
-            "title": "Images",
+            "title": "images",
             "sourceFolder": "./src/images",
             "sourceFiles": ["*.{jpg,png,gif,svg}"],
             "destinationFolder": "./images"
@@ -62,5 +63,33 @@
     "watch": [
         {"styles": ["styles"]},
         {"templates": ["templates"]}
-    ]
+    ],
+    "copyDist": [
+        {
+            "title": "root",
+            "sourceFolder": "./",
+            "sourceFiles": ["*.{html,txt}"],
+            "destinationFolder": "./dist/packages/gulp-example"
+        },
+        {
+            "title": "scripts",
+            "sourceFolder": "./js",
+            "sourceFiles": ["*.js"],
+            "destinationFolder": "./dist/packages/gulp-example/js"
+        },
+        {
+            "title": "styles",
+            "sourceFolder": "./css",
+            "sourceFiles": ["*.css"],
+            "destinationFolder": "./dist/packages/gulp-example/css"
+        }
+    ],
+    "dist": {
+        "readmeName": "readme.txt",
+        "readmeFolder": "./dist",
+        "packageFolder": "./dist/packages/gulp-example",
+        "archiveName": "dist.zip",
+        "archiveFolder": "./dist/packages",
+        "cleanFiles": ["./dist/**/*"]
+    }
 }
