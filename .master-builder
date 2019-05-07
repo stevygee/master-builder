@@ -49,8 +49,12 @@
         "cleanFiles": ["./*.html"]
     },
     "scripts": {
-        "sourceFiles": ["./src/js/script.js"],
-        "destinationFolder": "./js",
+        "files": [
+            {
+                "sourceFiles": ["./src/js/script.js"],
+                "destinationFolder": "./js"
+            }
+        ],
         "watchFiles": ["./src/js/**/*.js"],
         "cleanFiles": ["./js/*.{js,map}"]
     },

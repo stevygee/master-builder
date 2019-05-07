@@ -16,61 +16,70 @@ const notifier = require('node-notifier');
 // load config
 const config = require('../config');
 
-// set up browserify
-const b = browserify({
-    entries: config.scripts.sourceFiles,
-    cache: {},
-    packageCache: {},
-    plugin: [watchify] // watchify!
-});
+let tasks = [];
 
-// add transforms
-b.transform("babelify", {
-    presets: ["@babel/env"]
-});
+// loop through script tasks (see config) and fill an array with results from scripts functions (promises!)
+for (let v of config.scripts.files) {
 
-// watch for events
-b.on('update', bundle);
-b.on('log', log);
-b.on('time', function () {
-    if (config.env.mode === 'production') {
-        b.close();
+    // set up browserify
+    const b = browserify({
+        entries: v.sourceFiles,
+        cache: {},
+        packageCache: {},
+        plugin: [watchify] // watchify!
+    });
+
+    // add transforms
+    b.transform("babelify", {
+        presets: ["@babel/env"]
+    });
+
+    // watch for events
+    b.on('update', bundle);
+    b.on('log', log);
+    b.on('time', function () {
+        if (config.env.mode === 'production') {
+            b.close();
+        }
+    });
+
+    // define bundle
+    function bundle() {
+        return b.bundle()
+            .on('error', function (err) {
+
+                // throw error to console
+                log(colors.bold(colors.red(err.name + ': ' + err.message)));
+
+                // throw notification
+                notifier.notify({
+                    title: 'master-builder',
+                    message: 'JavaScript gone wrong.',
+                    sound: 'Basso'
+                });
+            })
+            .pipe(source(v.outputName))
+            .pipe(buffer())
+
+            // init sourcemaps
+            .pipe(config.env.mode !== 'production' ? sourcemaps.init({loadMaps: true}) : through())
+
+            .pipe(config.env.mode === 'production' ? uglify() : through())
+            .pipe(through((log(colors.white('JS files generated:')))))
+            .pipe(size({title: 'Scripts:', showFiles: true}))
+
+            // write sourcemaps (development)
+            .pipe(config.env.mode !== 'production' ? sourcemaps.write('./') : through())
+
+            .pipe(gulp.dest(v.destinationFolder))
+            .pipe(browserSync.stream());
     }
-});
 
-// define bundle
-function bundle() {
-    return b.bundle()
-        .on('error', function (err) {
-
-            // throw error to console
-            log(colors.bold(colors.red(err.name + ': ' + err.message)));
-
-            // throw notification
-            notifier.notify({
-                title: 'master-builder',
-                message: 'JavaScript gone wrong.',
-                sound: 'Basso'
-            });
-        })
-        .pipe(source('script.js'))
-        .pipe(buffer())
-
-        // init sourcemaps
-        .pipe(config.env.mode !== 'production' ? sourcemaps.init({loadMaps: true}) : through())
-
-        .pipe(config.env.mode === 'production' ? uglify() : through())
-        .pipe(through((log(colors.white('JS files generated:')))))
-        .pipe(size({title: 'Scripts:', showFiles: true}))
-
-        // write sourcemaps (development)
-        .pipe(config.env.mode !== 'production' ? sourcemaps.write('./') : through())
-
-        .pipe(gulp.dest(config.scripts.destinationFolder))
-        .pipe(browserSync.stream());
+    bundle.displayName = 'script:' + v.title;
+    tasks.push(bundle);
 }
 
-const task = bundle;
+const task = gulp.series(tasks);
 
 gulp.task('scripts', task);
 module.exports = task;
