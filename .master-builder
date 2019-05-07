@@ -52,7 +52,8 @@
         "files": [
             {
                 "sourceFiles": ["./src/js/script.js"],
-                "destinationFolder": "./js"
+                "destinationFolder": "./js",
+                "outputName": "script.js"
             }
         ],
         "watchFiles": ["./src/js/**/*.js"],
