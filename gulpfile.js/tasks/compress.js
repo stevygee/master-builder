@@ -77,7 +77,7 @@ const zipTask = (done) => {
 
 const cleanTask = (done) => {
 	// Clean compressed
-	return del([config.dist.packageFolder + '/**']);
+	return del(config.dist.postCleanFiles);
 };
 
 const task = gulp.series(readmeTask, zipTask, cleanTask);

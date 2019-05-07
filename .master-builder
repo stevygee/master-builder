@@ -93,6 +93,7 @@
         "readmeFolder": "./dist",
         "packageFolder": "./dist/archive",
         "archiveFolder": "./dist",
-        "cleanFiles": ["./dist/**/*"]
+        "cleanFiles": ["./dist/**/*"],
+        "postCleanFiles": ["./dist/**", "!./dist", "!./dist/master-builder-readme.txt", "!./dist/archive", "!./dist/archive/master-builder.zip"]
     }
 }
