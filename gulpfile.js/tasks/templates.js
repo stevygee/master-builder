@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 const gulp = require('gulp');
 const through = require('through');
 const log = require('fancy-log');
