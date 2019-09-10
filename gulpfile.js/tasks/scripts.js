@@ -31,7 +31,7 @@ for (let v of config.scripts.files) {
 
     // add transforms
     b.transform("babelify", {
-        presets: ["@babel/env"]
+        presets: ["@babel/env", "@babel/preset-react"]
     });
 
     // watch for events

@@ -53,5 +53,8 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.11.1"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0"
   }
 }
