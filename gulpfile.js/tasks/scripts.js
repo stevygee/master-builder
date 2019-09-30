@@ -5,7 +5,6 @@ const colors = require('ansi-colors');
 const browserify = require('browserify');
 const watchify = require('watchify');
 const babelify = require('babelify');
-const uglify = require('gulp-uglify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const sourcemaps = require('gulp-sourcemaps');
@@ -31,7 +30,7 @@ for (let v of config.scripts.files) {
 
     // add transforms
     b.transform("babelify", {
-        presets: ["@babel/env", "@babel/preset-react"]
+        presets: ["@babel/env", "@babel/preset-react", "minify"]
     });
 
     // watch for events
@@ -64,7 +63,6 @@ for (let v of config.scripts.files) {
             // init sourcemaps
             .pipe(config.env.mode !== 'production' ? sourcemaps.init({loadMaps: true}) : through())
 
-            .pipe(config.env.mode === 'production' ? uglify() : through())
             .pipe(through((log(colors.white('JS files generated:')))))
             .pipe(size({title: 'Scripts:', showFiles: true}))
 

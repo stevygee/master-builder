@@ -44,7 +44,6 @@
     "gulp-sass-glob": "^1.1.0",
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.0.0",
     "node-notifier": "^5.4.3",
     "postcss-custom-properties": "^9.0.2",
@@ -55,6 +54,7 @@
     "watchify": "^3.11.1"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-minify": "^0.5.1"
   }
 }
