@@ -13,7 +13,6 @@
     },
     "clean": {
         "cleanableTasks": [
-            "templates",
             "scripts",
             "styles",
             "dist"
@@ -39,15 +38,6 @@
         "mergeIdents": false,
         "reduceIdents": false
     },
-    "templates": {
-        "sourceFolder": "./src",
-        "sourceFiles": ["./src/*.html"],
-        "contentFile": "./src/content/index.json",
-        "partialsFolder": ["./src/partials"],
-        "destinationFolder": "./",
-        "watchFiles": ["./src/**/*.html", "./src/content/**/*.json"],
-        "cleanFiles": ["./*.html"]
-    },
     "scripts": {
         "files": [
             {
@@ -66,8 +56,7 @@
         "cleanFiles": ["./css/*.{css,map}"]
     },
     "watch": [
-        {"styles": ["styles"]},
-        {"templates": ["templates"]}
+        {"styles": ["styles"]}
     ],
     "copyDist": [
         {
