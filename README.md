@@ -1,7 +1,5 @@
 # Master Builder
-A reusable SCSS / JS builder for
-- WordPress themes / plugins and
-- static sites (using [Handlebars.js](handlebarsjs.com))
+A reusable SCSS / JS builder
 
 heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redaxo-mit-bimmelbam) and [just-build-it](https://github.com/sympletech/just-build-it).
 
@@ -19,11 +17,6 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 3. ```npm start```
 
 Optional: Copy .master-builder file to your project and configure to your needs!
-
-### To do
-- [ ] Add Webpack
-- [ ] Add JSHint / gulp-jshint
-- [ ] Add SassLint / gulp-sass-lint
 
 ### Development
 How to add as a local dependency:
