@@ -77,6 +77,10 @@ for (let v of config.scripts.files) {
     tasks.push(bundle);
 }
 
+if ( tasks.length < 1 ) {
+    tasks = function() {};
+}
+
 const task = gulp.series(tasks);
 
 gulp.task('scripts', task);
