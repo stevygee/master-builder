@@ -13,7 +13,7 @@ const task = (done) => {
 
         // bring out some ASCII art
         asciify('MASTER BUILDER', {
-            font: 'big',
+            font: 'mini',
             color: 'red'
         }, (err, res) => {
             console.log(res);
