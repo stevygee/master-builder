@@ -21,13 +21,13 @@
     "copy": [
         {
             "title": "fonts",
-            "sourceFolder": "./src/fonts",
+            "sourceFolder": "./example/src/fonts",
             "sourceFiles": ["*.{eot,svg,otf,ttf,woff,woff2}"],
             "destinationFolder": "./fonts"
         },
         {
             "title": "images",
-            "sourceFolder": "./src/images",
+            "sourceFolder": "./example/src/images",
             "sourceFiles": ["*.{jpg,png,gif,svg}"],
             "destinationFolder": "./images"
         }
@@ -41,18 +41,18 @@
     "scripts": {
         "files": [
             {
-                "sourceFiles": ["./src/js/script.js"],
+                "sourceFiles": ["./example/src/js/script.js"],
                 "destinationFolder": "./js",
                 "outputName": "script.js"
             }
         ],
-        "watchFiles": ["./src/js/**/*.js"],
+        "watchFiles": ["./example/src/js/**/*.js"],
         "cleanFiles": ["./js/*.{js,map}"]
     },
     "styles": {
-        "sourceFiles": ["./src/scss/*.scss"],
+        "sourceFiles": ["./example/src/scss/*.scss"],
         "destinationFolder": "./css",
-        "watchFiles": ["./src/scss/**/*.scss"],
+        "watchFiles": ["./example/src/scss/**/*.scss"],
         "cleanFiles": ["./css/*.{css,map}"]
     },
     "watch": [
