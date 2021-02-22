@@ -9,7 +9,6 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const customProperties = require('postcss-custom-properties');
 const cssnano = require('cssnano');
-const browserSync = require('browser-sync');
 const size = require('gulp-size');
 const plumber = require('gulp-plumber');
 const notifier = require('node-notifier');
@@ -76,10 +75,7 @@ const task = (done) => {
         .pipe(config.env.mode !== 'production' ? sourcemaps.write('.') : through())
 
         // save
-        .pipe(gulp.dest(config.styles.destinationFolder))
-
-        // make browersync reload CSS only!
-        .pipe(browserSync.stream({match: '**/*.css'}));
+        .pipe(gulp.dest(config.styles.destinationFolder));
 };
 
 gulp.task('styles', task);

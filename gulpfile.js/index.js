@@ -15,8 +15,7 @@ tasks.development = gulp.series(
     'styles',
     'scripts',
     'copy',
-    'watch',
-    'browserSync'
+    'watch'
 );
 tasks.production = gulp.series(
     'init',

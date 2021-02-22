@@ -19,14 +19,6 @@ const task = (done) => {
         }, gulp.series(v[Object.keys(v)]));
     }
 
-    // throw notification
-    notifier.notify({
-        title: 'master-builder',
-        message: 'http://localhost:' + config.browserSync.port,
-        open: 'http://localhost:' + config.browserSync.port,
-        sound: 'Purr'
-    });
-
     done();
 };
 

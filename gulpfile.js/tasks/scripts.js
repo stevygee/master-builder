@@ -8,7 +8,6 @@ const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const sourcemaps = require('gulp-sourcemaps');
-const browserSync = require('browser-sync');
 const size = require('gulp-size');
 const notifier = require('node-notifier');
 
@@ -69,8 +68,7 @@ for (let v of config.scripts.files) {
             // write sourcemaps (development)
             .pipe(config.env.mode !== 'production' ? sourcemaps.write('./') : through())
 
-            .pipe(gulp.dest(v.destinationFolder))
-            .pipe(browserSync.stream());
+            .pipe(gulp.dest(v.destinationFolder));
     }
 
     bundle.displayName = 'script:' + v.title;

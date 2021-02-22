@@ -2,15 +2,6 @@
     "env": {
         "mode": "development"
     },
-    "browserSync": {
-        "server": "./",
-        "port": 3000,
-        "open": false,
-        "reloadOnRestart": true,
-        "notify": false,
-        "reloadDelay": 0,
-        "ghostMode": false
-    },
     "clean": {
         "cleanableTasks": [
             "scripts",
