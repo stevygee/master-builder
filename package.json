@@ -46,7 +46,6 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-zip": "^5.1.0",
     "node-notifier": "^9.0.1",
-    "postcss": "^8.2.15",
     "postcss-custom-properties": "^11.0.0",
     "require-dir": "^1.2.0",
     "through": "^2.3.8",
@@ -54,9 +53,7 @@
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0"
   },
-  "devDependencies": {},
-  "publishConfig": {
-    "name": "@stevygee\/master-builder",
-    "registry": "https://registry.npmjs.org/"
+  "devDependencies": {
+    "postcss": "^8.2.15"
   }
 }
