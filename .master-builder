@@ -1,7 +1,4 @@
 {
-    "env": {
-        "mode": "development"
-    },
     "copy": [
         {
             "title": "fonts",

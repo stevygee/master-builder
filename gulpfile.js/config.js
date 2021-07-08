@@ -5,7 +5,8 @@ const configFile = fs.existsSync(configPath) ? fs.readFileSync(configPath, 'utf-
 const config = JSON.parse(configFile);
 
 // Set mode
-config.env.mode = process.argv[2] || config.env.mode;
+config.env = {};
+config.env.mode = process.argv[2] || 'development';
 config.env.mode = 'deploy' === config.env.mode ? 'production' : config.env.mode;
 
 // Set package info
