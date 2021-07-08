@@ -4,12 +4,13 @@ const asciify = require('asciify');
 
 // load config
 const config = require('../config');
+const pkg = require('../../package.json');
 
 const task = (done) => {
 
     let mode = config.env.mode === 'production' ? 'Production' : 'Development';
     let color = config.env.mode === 'production' ? 'red' : 'blue';
-    let version = 'v' + config.pkg.version;
+    let version = 'v' + pkg.version;
 
     console.log(colors.white('\n ' + mode + version.padStart(51, ' ')));
 
