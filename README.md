@@ -5,6 +5,17 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 
 <img src="https://media.giphy.com/media/3ZALZoBtI1KJa/200w_d.gif" alt="Lego timelapse" width="256" height="144">
 
+### Requirements
+- Node 12
+
+### Features
+- Understands JSX / React for WordPress blocks
+- PostCSS
+- Autoprefixer
+- CSS nano
+- Browserify
+- etc.
+
 ### Getting started
 1. Add scripts to your project's package.json:
 ```
