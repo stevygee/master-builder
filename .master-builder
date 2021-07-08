@@ -3,7 +3,7 @@
         {
             "title": "fonts",
             "sourceFolder": "./example/src/fonts",
-            "sourceFiles": ["*.{eot,svg,otf,ttf,woff,woff2}"],
+            "sourceFiles": ["*.{woff,woff2}"],
             "destinationFolder": "./fonts"
         },
         {
@@ -41,7 +41,7 @@
             {
                 "title": "root",
                 "sourceFolder": "./example",
-                "sourceFiles": ["*.{html,txt}"],
+                "sourceFiles": ["*.{php,txt,png,css}", "LICENSE"],
                 "destinationFolder": ""
             },
             {
@@ -55,6 +55,42 @@
                 "sourceFolder": "./css",
                 "sourceFiles": ["*.css"],
                 "destinationFolder": "/css"
+            },
+            {
+                "title": "images",
+                "sourceFolder": "./images",
+                "sourceFiles": ["**/*.{jpg,png,gif,svg}"],
+                "destinationFolder": "/images"
+            },
+            {
+                "title": "fonts",
+                "sourceFolder": "./fonts",
+                "sourceFiles": ["**/*"],
+                "destinationFolder": "/fonts"
+            },
+            {
+                "title": "template parts",
+                "sourceFolder": "./template-parts",
+                "sourceFiles": ["**/*.php"],
+                "destinationFolder": "/template-parts"
+            },
+            {
+                "title": "inc",
+                "sourceFolder": "./inc",
+                "sourceFiles": ["*.php"],
+                "destinationFolder": "/inc"
+            },
+            {
+                "title": "languages",
+                "sourceFolder": "./languages",
+                "sourceFiles": ["*.{pot,txt}"],
+                "destinationFolder": "/languages"
+            },
+            {
+                "title": "vendor",
+                "sourceFolder": "./vendor",
+                "sourceFiles": ["**/*"],
+                "destinationFolder": "/vendor"
             }
         ],
         "cleanFiles": ["./dist/**/*"]
