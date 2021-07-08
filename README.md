@@ -16,31 +16,25 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 2. ```npm install @stevygee/master-builder --save-dev```
 3. ```npm start```
 
-Optional: Copy .master-builder file to your project and configure to your needs!
+Optional: Copy `.master-builder`, `.browserslistrc`, `cssnano.config.js` config files to your project and configure to your needs!
+
+### Building for production
+1. ```npm run deploy```
+2. Upload the zip file in dist/packages using WordPress (install theme/plugin).
 
 ### Development
 How to add as a local dependency:
-1. Install npm v4, you can do so globally using ```npm install -g npm@4```
-2. Install [local-dependencies](https://github.com/aam229/local-dependencies): ```npm install --save-dev local-dependencies```
-3. Modify scripts and dependencies in package.json:
+1. Checkout this repo
+2. Change the dependency path in your project's package.json:
 ```
-  "scripts": {
-    ...
-    "configure-dependencies": "configure-local-dependencies",
-    "install-dependencies": "install-local-dependencies",
-    "watch-dependencies": "watch-local-dependencies"
-  },
   "devDependencies": {
     ...
-    "local-dependencies": "^1.0.0-beta3",
-    "master-builder": "../master-builder"
+    "@stevygee/master-builder": "../master-builder"
   }
 ```
-4. ```npm install```
-5. Use ```npm run configure-local-dependencies``` to generate a .ldrc file, make sure it contains the absolute path to master-builder
-6. ```npm run install-dependencies```
-7. ```npm start```
+3. In your project root: ```npm install``` and ```npm install @babel/preset-env @babel/preset-react babel-preset-minify babelify```
+4. Instead of `npm start`, use `node bin/index.js` or `node bin/index.js deploy` to start the build
 
-Use ```npm run watch-dependencies``` to continously update the package as you make changes.
+Use ```npm install``` to continously update the package after you've made a change.
 
 <img src="https://media.giphy.com/media/JJhiRdcYfcokU/giphy.gif" alt="Lego Batman" width="256" height="167">
