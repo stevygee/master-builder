@@ -16,12 +16,6 @@
             "destinationFolder": "./images"
         }
     ],
-    "cssnano": {
-        "zindex": false,
-        "discardUnused": false,
-        "mergeIdents": false,
-        "reduceIdents": false
-    },
     "scripts": {
         "files": [
             {

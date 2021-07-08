@@ -26,7 +26,7 @@ const task = (done) => {
 
     // compress (production)
     if (config.env.mode === 'production') {
-        postcssPlugins.push(cssnano(config.cssnano));
+        postcssPlugins.push(cssnano()); // cssnano uses config from cssnano.config.js
     }
 
     return gulp.src(config.styles.sourceFiles)
