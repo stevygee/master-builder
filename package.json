@@ -1,6 +1,6 @@
 {
   "name": "@stevygee/master-builder",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A reusable builder to compile es6 and scss from a source directory into a destination directory",
   "bin": {
     "master-builder": "bin/index.js"
