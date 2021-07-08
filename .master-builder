@@ -52,29 +52,30 @@
     "copyDist": [
         {
             "title": "root",
-            "sourceFolder": "./",
+            "sourceFolder": "./example",
             "sourceFiles": ["*.{html,txt}"],
-            "destinationFolder": "./dist/archive"
+            "destinationFolder": "./dist/packages/master-builder"
         },
         {
             "title": "scripts",
             "sourceFolder": "./js",
             "sourceFiles": ["*.js"],
-            "destinationFolder": "./dist/archive/js"
+            "destinationFolder": "./dist/packages/master-builder/js"
         },
         {
             "title": "styles",
             "sourceFolder": "./css",
             "sourceFiles": ["*.css"],
-            "destinationFolder": "./dist/archive/css"
+            "destinationFolder": "./dist/packages/master-builder/css"
         }
     ],
     "dist": {
-        "readmeName": "readme.txt",
+        "readmeName": "./example/readme.txt",
         "readmeFolder": "./dist",
-        "packageFolder": "./dist/archive",
-        "archiveFolder": "./dist",
+        "packageName": "master-builder",
+        "packageFolder": "./dist/packages/master-builder",
+        "archiveFolder": "./dist/packages",
         "cleanFiles": ["./dist/**/*"],
-        "postCleanFiles": ["./dist/**", "!./dist", "!./dist/master-builder-readme.txt", "!./dist/archive", "!./dist/archive/master-builder.zip"]
+        "postCleanFiles": ["./dist/**", "./dist/packages/**", "!./dist", "!./dist/master-builder-readme.txt", "!./dist/packages", "!./dist/packages/master-builder.zip"]
     }
 }

@@ -1,3 +1,19 @@
 body {
-	background: navy;
+	background: blanchedalmond;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr;
+}
+
+.flex {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.prefix-test {
+	user-select: none;
 }
