@@ -7,32 +7,20 @@ const config = require('../config');
 
 const task = (done) => {
 
-    if (config.env.mode === 'production') {
+    let mode = config.env.mode === 'production' ? 'Production' : 'Development';
+    let color = config.env.mode === 'production' ? 'red' : 'blue';
+    let version = 'v' + config.pkg.version;
 
-        console.log(colors.white('\n  Production'));
+    console.log(colors.white('\n ' + mode + version.padStart(51, ' ')));
 
-        // bring out some ASCII art
-        asciify('MASTER BUILDER', {
-            font: 'mini',
-            color: 'red'
-        }, (err, res) => {
-            console.log(res);
-            done();
-        });
-    }
-    else {
-
-        console.log(colors.white('\n  Development'));
-
-        // bring out some ASCII art
-        asciify('MASTER BUILDER', {
-            font: 'mini',
-            color: 'blue'
-        }, (err, res) => {
-            console.log(res);
-            done();
-        });
-    }
+    // bring out some ASCII art
+    asciify('MASTER BUILDER', {
+        font: 'cybermedium',
+        color: color,
+    }, (err, res) => {
+        console.log(res);
+        done();
+    });
 };
 
 gulp.task('init', task);
