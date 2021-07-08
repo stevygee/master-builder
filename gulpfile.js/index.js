@@ -26,7 +26,6 @@ tasks.production = gulp.series(
         'scripts',
         'copy'
     ),
-    'copyDist',
     'compress'
 );
 

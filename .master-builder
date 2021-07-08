@@ -42,30 +42,30 @@
     "watch": [
         {"styles": ["styles"]}
     ],
-    "copyDist": [
-        {
-            "title": "root",
-            "sourceFolder": "./example",
-            "sourceFiles": ["*.{html,txt}"],
-            "destinationFolder": "./dist/packages/master-builder"
-        },
-        {
-            "title": "scripts",
-            "sourceFolder": "./js",
-            "sourceFiles": ["*.js"],
-            "destinationFolder": "./dist/packages/master-builder/js"
-        },
-        {
-            "title": "styles",
-            "sourceFolder": "./css",
-            "sourceFiles": ["*.css"],
-            "destinationFolder": "./dist/packages/master-builder/css"
-        }
-    ],
     "dist": {
         "packageName": "master-builder",
         "readmeName": "./example/readme.txt",
         "distRoot": "./dist",
+        "files": [
+            {
+                "title": "root",
+                "sourceFolder": "./example",
+                "sourceFiles": ["*.{html,txt}"],
+                "destinationFolder": ""
+            },
+            {
+                "title": "scripts",
+                "sourceFolder": "./js",
+                "sourceFiles": ["*.js"],
+                "destinationFolder": "/js"
+            },
+            {
+                "title": "styles",
+                "sourceFolder": "./css",
+                "sourceFiles": ["*.css"],
+                "destinationFolder": "/css"
+            }
+        ],
         "cleanFiles": ["./dist/**/*"]
     }
 }
