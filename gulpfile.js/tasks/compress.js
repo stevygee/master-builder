@@ -11,6 +11,17 @@ const notifier = require('node-notifier');
 // load config
 const config = require('../config');
 
+//config.dist.packageFolder = config.dist.distRoot + "/packages/" + config.dist.packageName;
+config.dist.archiveFolder = config.dist.distRoot + "/packages";
+config.dist.postCleanFiles = [ // clean everything but the readme and the zip
+	config.dist.distRoot + "/**",
+	config.dist.distRoot + "/packages/**",
+	"!" + config.dist.distRoot,
+	"!" + config.dist.distRoot + "/" + config.dist.packageName + "-readme.txt",
+	"!" + config.dist.distRoot + "/packages",
+	"!" + config.dist.distRoot + "/packages/" + config.dist.packageName + ".zip"
+];
+
 const readmeTask = (done) => {
 	let hasErrors = false; // init
 
@@ -40,7 +51,7 @@ const readmeTask = (done) => {
 		.pipe(size({title: 'Readme:', showFiles: true}))
 
 		// save
-		.pipe(gulp.dest(config.dist.readmeFolder));
+		.pipe(gulp.dest(config.dist.distRoot));
 };
 
 const zipTask = (done) => {

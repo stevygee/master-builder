@@ -6,6 +6,14 @@ const del = require('del');
 // load config
 const config = require('../config');
 
+config.clean = {
+    "cleanableTasks": [
+        "scripts",
+        "styles",
+        "dist"
+    ]
+};
+
 // create dedicated tasks (e. g. 'clean:images')
 for (let v of config.clean.cleanableTasks) {
     gulp.task('clean:' + v, function (done) {

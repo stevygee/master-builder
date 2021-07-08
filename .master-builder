@@ -2,13 +2,6 @@
     "env": {
         "mode": "development"
     },
-    "clean": {
-        "cleanableTasks": [
-            "scripts",
-            "styles",
-            "dist"
-        ]
-    },
     "copy": [
         {
             "title": "fonts",
@@ -70,12 +63,9 @@
         }
     ],
     "dist": {
-        "readmeName": "./example/readme.txt",
-        "readmeFolder": "./dist",
         "packageName": "master-builder",
-        "packageFolder": "./dist/packages/master-builder",
-        "archiveFolder": "./dist/packages",
-        "cleanFiles": ["./dist/**/*"],
-        "postCleanFiles": ["./dist/**", "./dist/packages/**", "!./dist", "!./dist/master-builder-readme.txt", "!./dist/packages", "!./dist/packages/master-builder.zip"]
+        "readmeName": "./example/readme.txt",
+        "distRoot": "./dist",
+        "cleanFiles": ["./dist/**/*"]
     }
 }
