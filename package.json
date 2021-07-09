@@ -1,6 +1,6 @@
 {
   "name": "@stevygee/master-builder",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A reusable builder to compile es6 and scss from a source directory into a destination directory",
   "bin": {
     "master-builder": "bin/index.js"
@@ -20,7 +20,7 @@
     "url": "https://github.com/stevygee/master-builder/issues"
   },
   "homepage": "https://github.com/stevygee/master-builder#readme",
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
@@ -46,6 +46,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-zip": "^5.1.0",
     "node-notifier": "^10.0.0",
+    "postcss": "^8.3.5",
     "postcss-custom-properties": "^11.0.0",
     "require-dir": "^1.2.0",
     "sass": "^1.35.1",
@@ -53,8 +54,5 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0"
-  },
-  "devDependencies": {
-    "postcss": "^8.3.5"
   }
 }
