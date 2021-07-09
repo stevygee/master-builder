@@ -34,6 +34,11 @@ Optional: Copy `.master-builder`, `.browserslistrc`, `cssnano.config.js` config 
 2. Upload the zip file in dist/packages using WordPress (install theme/plugin).
 
 ### Development
+1. Checkout this repo
+3. ```npm install```
+4. Instead of `npm start`, use `node bin/index.js` or `node bin/index.js deploy` to build the example files
+
+### Development using your project
 How to add as a local dependency:
 1. Checkout this repo
 2. Change the dependency path in your project's package.json:
@@ -43,8 +48,7 @@ How to add as a local dependency:
     "@stevygee/master-builder": "../master-builder"
   }
 ```
-3. In your project root: ```npm install``` and ```npm install @babel/preset-env @babel/preset-react babel-preset-minify babelify```
-4. Instead of `npm start`, use `node bin/index.js` or `node bin/index.js deploy` to start the build
+3. In your project root: ```npm install``` and ```npm install @babel/core @babel/preset-env @babel/preset-react babel-preset-minify babelify```
 
 Use ```npm install``` to continously update the package after you've made a change.
 
