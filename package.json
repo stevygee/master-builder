@@ -20,7 +20,7 @@
     "url": "https://github.com/stevygee/master-builder/issues"
   },
   "homepage": "https://github.com/stevygee/master-builder#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
