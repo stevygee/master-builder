@@ -14,7 +14,6 @@ const notifier = require('node-notifier');
 // load config
 const config = require('../config');
 
-config.dist.packageFolder = config.dist.distRoot + "/packages/" + config.dist.packageName;
 config.dist.archiveFolder = config.dist.distRoot + "/packages";
 config.dist.postCleanFiles = [ // clean everything but the readme and the zip
 	config.dist.distRoot + "/**",
@@ -26,63 +25,6 @@ config.dist.postCleanFiles = [ // clean everything but the readme and the zip
 ];
 
 let tasks = [];
-
-if ( typeof config.dist.files === 'undefined' ) {
-    // skip task if missing in config
-    const emptyTask = () => { return gulp.src('.'); }
-    tasks.push(emptyTask);
-} else {
-    // loop through copy tasks (see config) and fill an array with results from copy functions (promises!)
-    for (let v of config.dist.files) {
-    	let destinationFolder = config.dist.packageFolder + v.destinationFolder;
-        const copyTask = () => copy(v.sourceFiles, path.resolve(destinationFolder), {
-            cwd: v.sourceFolder,
-            parents: true
-        }).then((res) => {
-            if (res.length > 0) {
-                log(colors.white('Copied ' + v.title + ': ' + colors.magenta(res.length)));
-            }
-        }).catch((err) => {
-            // throw error to console
-            log(colors.bold(colors.red(err.name + ': ' + err.message)));
-        });
-
-        copyTask.displayName = 'copy:' + v.title;
-        tasks.push(copyTask);
-    }
-}
-
-const readmeTask = (done) => {
-	let hasErrors = false; // init
-
-	// Put readme in dist root
-	return gulp.src(config.dist.readmeName)
-		.pipe(rename( { prefix: config.dist.packageName + '-' }))
-		.on('error', function (err) {
-
-			// mark errors
-			hasErrors = true;
-
-			// throw error to console
-			log(colors.bold(colors.red(err.name + ': ' + err.message)));
-
-			// throw notification
-			notifier.notify({
-				title: 'master-builder',
-				message: 'Compress gone wrong.',
-				sound: 'Basso'
-			});
-
-			// continue gulp task
-			done();
-		})
-		// log
-		.pipe(!hasErrors ? through(log(colors.white('Text files copied:'))) : through())
-		.pipe(size({title: 'Readme:', showFiles: true}))
-
-		// save
-		.pipe(gulp.dest(config.dist.distRoot));
-};
 
 const zipTask = (done) => {
 	let hasErrors = false; // init
@@ -121,7 +63,6 @@ const cleanTask = (done) => {
 	return del(config.dist.postCleanFiles);
 };
 
-tasks.push(readmeTask);
 tasks.push(zipTask);
 tasks.push(cleanTask);
 const task = gulp.series(tasks);

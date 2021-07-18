@@ -9,7 +9,7 @@ requireDir('./tasks', { recurse: true });
 
 // define sequences
 const tasks = {};
-tasks.development = gulp.series(
+tasks.dev = gulp.series(
     'init',
     'clean',
     'styles',
@@ -17,7 +17,7 @@ tasks.development = gulp.series(
     'copy',
     'watch'
 );
-tasks.production = gulp.series(
+tasks.build = gulp.series(
     'init',
     'clean',
     // run tasks in parallel because production mode can be much slower
@@ -26,13 +26,25 @@ tasks.production = gulp.series(
         'scripts',
         'copy'
     ),
+    'dist'
+);
+tasks.deploy = gulp.series(
+    'init',
+    'clean',
+    // run tasks in parallel because production mode can be much slower
+    gulp.parallel(
+        'styles',
+        'scripts',
+        'copy'
+    ),
+    'dist',
     'compress'
 );
 
 // define tasks
-gulp.task('development', tasks.development);
-gulp.task('production', tasks.production);
-gulp.task('deploy', tasks.production);
+gulp.task('dev', tasks.dev);
+gulp.task('build', tasks.build);
+gulp.task('deploy', tasks.deploy);
 
 // define default alias (use from ENV)
-gulp.task('default', tasks[config.env.mode]);
+gulp.task('default', tasks['dev']);

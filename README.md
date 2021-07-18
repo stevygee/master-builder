@@ -21,6 +21,7 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 ```
   "scripts": {
     "start": "master-builder",
+    "build": "master-builder build",
     "deploy": "master-builder deploy"
   },
 ```
@@ -30,6 +31,9 @@ heavily based on [redaxo-mit-bimmelbam](https://github.com/FriendsOfREDAXO/redax
 Optional: Copy `.master-builder`, `.browserslistrc`, `cssnano.config.js` config files to your project and configure to your needs!
 
 ### Building for production
+1. ```npm run build```
+
+### Building for production and create a zip file
 1. ```npm run deploy```
 2. Upload the zip file in dist/packages using WordPress (install theme/plugin).
 

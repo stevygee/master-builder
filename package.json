@@ -8,6 +8,7 @@
   "main": "bin/index.js",
   "scripts": {
     "start": "master-builder",
+    "build": "master-builder build",
     "deploy": "master-builder deploy"
   },
   "repository": {
