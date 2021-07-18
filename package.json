@@ -11,10 +11,6 @@
     "build": "master-builder build",
     "deploy": "master-builder deploy"
   },
-  "engines": {
-    "node": "^12",
-    "npm": "^6"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:stevygee/master-builder.git"
