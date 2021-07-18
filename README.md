@@ -39,7 +39,7 @@ Optional: Copy `.master-builder`, `.browserslistrc`, `cssnano.config.js` config 
 
 ### Development
 1. Checkout this repo
-3. ```npm install```
+3. ```npm install``` (make sure you are using npm v7)
 4. Instead of `npm start`, use `node bin/index.js` or `node bin/index.js deploy` to build the example files
 
 ### Development using your project
