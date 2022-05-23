@@ -27,6 +27,9 @@ for (let v of config.scripts.files) {
         plugin: [watchify] // watchify!
     });
 
+    // Shrink it down
+    b.plugin('tinyify');
+
     // add transforms
     b.transform("babelify", {
         presets: ["@babel/env", "@babel/preset-react", ["minify", {builtIns: false}]]
