@@ -41,7 +41,7 @@
             {
                 "title": "root",
                 "sourceFolder": "./example",
-                "sourceFiles": ["*.{php,txt,png,css}", "LICENSE"],
+                "sourceFiles": ["*.{php,html,txt,png,css}", "LICENSE"],
                 "destinationFolder": ""
             },
             {

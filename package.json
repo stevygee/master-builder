@@ -9,7 +9,8 @@
   "scripts": {
     "start": "master-builder",
     "build": "master-builder build",
-    "deploy": "master-builder deploy"
+    "deploy": "master-builder deploy",
+    "serve": "light-server -s dist/packages/master-builder -p 8080"
   },
   "repository": {
     "type": "git",
@@ -55,5 +56,10 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^4.0.0"
+  },
+  "devDependencies": {
+    "classnames": "^2.3.1",
+    "light-server": "^2.9.1",
+    "lodash": "^4.17.21"
   }
 }
