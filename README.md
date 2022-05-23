@@ -52,7 +52,7 @@ How to add as a local dependency:
     "@stevygee/master-builder": "../master-builder"
   }
 ```
-3. In your project root: ```npm install``` and ```npm install @babel/core @babel/preset-env @babel/preset-react babel-preset-minify babelify```
+3. In your project root: ```npm install @babel/core @babel/preset-env @babel/preset-react babel-preset-minify babelify tinyify```
 
 Use ```npm install``` to continously update the package after you've made a change.
 
