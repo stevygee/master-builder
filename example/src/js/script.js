@@ -6,11 +6,6 @@ const pickBy = require('lodash/pickBy');
 
 const classnames = require('classnames');
 
-/**
- * Internal dependencies
- */
-require('./tab-switcher.js');
-
 /* Math */
 let number = Math.min(2,3);
 console.log('test: Math', number);
