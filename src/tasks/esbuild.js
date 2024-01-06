@@ -1,4 +1,5 @@
 import { config } from '../config.js';
+import { envPlugin as notifierPlugin } from '../notifier.js';
 
 import { glob } from 'glob';
 
@@ -78,6 +79,7 @@ export default async function perform() {
 					return css;
 				},
 			} ),
+			notifierPlugin,
 		],
 	};
 
