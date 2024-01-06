@@ -1,11 +1,6 @@
 #! /usr/bin/env node
 
-/*let task = process.argv[2] || 'default';
+import { performTask } from '../src/index.js';
 
-const gulp = require('gulp');
-require('../gulpfile.js/index');
-
-gulp.task(task)();
-*/
-
-import '../src/index.js';
+let task = process.argv[2] || 'default';
+performTask( task );

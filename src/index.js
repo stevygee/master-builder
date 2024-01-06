@@ -1,92 +1,56 @@
-import { config } from '../src/config.js';
+import { config } from './config.js';
 
-import { glob } from 'glob';
+import init from './tasks/init.js';
+import clean from './tasks/clean.js';
+import copy from './tasks/copy.js';
+import scriptsStyles from './tasks/esbuild.js';
+import dist from './tasks/dist.js';
+import compress from './tasks/compress.js';
 
-import * as esbuild from 'esbuild';
-import { sassPlugin } from 'esbuild-sass-plugin';
+const delay = ms => new Promise( res => setTimeout( res, ms ) );
 
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import postcssPresetEnv from 'postcss-preset-env';
+async function asyncTask1() {
+	await scriptsStyles();
+	//console.log('task 1 done');
+}
 
-import browserslist from 'browserslist';
-import {
-	esbuildPluginBrowserslist,
-	resolveToEsbuildTarget,
-} from 'esbuild-plugin-browserslist';
+async function asyncTask2() {
+	await copy();
+	//console.log('task 2 done');
+}
 
+async function runScriptsStylesCopyInParallel() {
+	try {
+		const task1 = asyncTask1();
+		const task2 = asyncTask2();
 
-let entryPoints = [];
-
-// loop through files in scripts config and fill an array with entry points
-for ( let v of config.scripts.files ) {
-	for ( let f of v.sourceFiles ) {
-		let input = v.outputName;
-		let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
-		entryPoints.push( { in: f, out: outputName } );
+		await Promise.all( [ task1, task2 ] );
+	} catch ( error ) {
+		log( 'Oops! An error occurred while running tasks:', error );
 	}
 }
 
-// loop through files in styles config and fill an array with entry points
-for ( let v of config.styles.sourceFiles ) {
-	const fileNames = await glob( v );
-	for ( let f of fileNames ) {
-		entryPoints.push( f );
+export async function performTask( taskName ) {
+	switch ( taskName ) {
+		case 'build':
+			await init();
+			await clean();
+			await runScriptsStylesCopyInParallel();
+			await dist();
+			break;
+		case 'deploy':
+			await init();
+			await clean();
+			await runScriptsStylesCopyInParallel();
+			await dist();
+			await compress();
+			break;
+		case 'dev':
+		default:
+			await init();
+			await clean();
+			await scriptsStyles();
+			await copy();
+			break;
 	}
-}
-
-let settings = {
-	/*entryPoints: [
-		{ in: './example/src/js/script.js', out: 'script' },
-		'./example/src/scss/style.scss',
-	],*/
-	entryPoints,
-	bundle: true,
-	splitting: true,
-	write: true,
-	minify: config.env.mode === 'production',
-	sourcemap: config.env.mode === 'development',
-	format: 'esm',
-	loader: {
-		'.js': 'jsx',
-		/*
-		'.gif': 'copy',
-		'.jpeg': 'copy',
-		'.jpg': 'copy',
-		'.png': 'copy',
-		'.svg': 'copy',
-		'.woff2': 'copy',*/
-	},
-	external: [ '*.gif', '*.jpeg', '*.jpg', '*.webp', '*.svg', '*.woff2' ],
-	/*target: [
-		'es2017', // Allow target override (instead of browserslist)
-	],*/
-	//metafile: true,
-	logLevel: 'info',
-	outdir: 'dist', // TODO: Multiple?
-	plugins: [
-		esbuildPluginBrowserslist( browserslist(), {
-			printUnknownTargets: false,
-		} ),
-		// TODO: Try different SASS plugin if source maps don't work here and browserlist won't get found
-		sassPlugin( {
-			async transform( source, resolveDir ) {
-				const { css } = await postcss( [
-					autoprefixer,
-					postcssPresetEnv( { stage: 0 } ),
-				] ).process( source, { from: resolveDir } );
-				return css;
-			},
-		} ),
-	],
-};
-
-if ( config.env.mode === 'development' ) {
-	let ctx = await esbuild.context( settings );
-	await ctx.watch();
-	console.log( 'Watching...' );
-} else {
-	let result = await esbuild.build( settings );
-
-	//console.log( await esbuild.analyzeMetafile( result.metafile ) );
 }
