@@ -11,6 +11,7 @@ export async function copyFiles( files, destinationPathPrefix = '' ) {
 		return;
 	}
 
+	// https://stackoverflow.com/a/37576787
 	await Promise.all( files.map( async (v) => {
 		let destinationFolder = path.resolve( destinationPathPrefix + v.destinationFolder );
 

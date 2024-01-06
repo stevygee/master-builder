@@ -13,6 +13,7 @@ export default async function perform() {
 	// Compress package dir
 	await new Promise( (resolve, reject) => {
 		// Use vinyl-fs to run gulp-zip
+		// https://stackoverflow.com/a/69155787
 		vfs.src( archiveFolder + '/**/*', { base: archiveFolder } )
 			.pipe( zip( config.dist.packageName + '.zip' ) )
 			.pipe( size( { title: 'ZIP file generated:', showFiles: true } ) )
