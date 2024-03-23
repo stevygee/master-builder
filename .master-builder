@@ -1,98 +1,101 @@
 {
-    "copy": [
-        {
-            "title": "fonts",
-            "sourceFolder": "./example/src/fonts",
-            "sourceFiles": ["*.{woff,woff2}"],
-            "destinationFolder": "./fonts"
-        },
-        {
-            "title": "images",
-            "sourceFolder": "./example/src/images",
-            "sourceFiles": ["*.{jpg,png,gif,svg}"],
-            "destinationFolder": "./images"
-        }
-    ],
-    "scripts": {
-        "files": [
-            {
-                "sourceFiles": ["./example/src/js/script.js"],
-                "destinationFolder": "./js",
-                "outputName": "script.js"
-            }
-        ],
-        "watchFiles": ["./example/src/js/**/*.js"],
-        "cleanFiles": ["./js/*.{js,map}"]
-    },
-    "styles": {
-        "sourceFiles": ["./example/src/scss/*.scss"],
-        "destinationFolder": "./css",
-        "watchFiles": ["./example/src/scss/**/*.scss"],
-        "cleanFiles": ["./css/*.{css,map}"]
-    },
-    "watch": [
-        {"styles": ["styles"]}
-    ],
-    "dist": {
-        "packageName": "master-builder",
-        "readmeName": "./example/readme.txt",
-        "distRoot": "./dist",
-        "files": [
-            {
-                "title": "root",
-                "sourceFolder": "./example",
-                "sourceFiles": ["*.{php,html,txt,png,css}", "LICENSE"],
-                "destinationFolder": ""
-            },
-            {
-                "title": "scripts",
-                "sourceFolder": "./js",
-                "sourceFiles": ["*.js"],
-                "destinationFolder": "/js"
-            },
-            {
-                "title": "styles",
-                "sourceFolder": "./css",
-                "sourceFiles": ["*.css"],
-                "destinationFolder": "/css"
-            },
-            {
-                "title": "images",
-                "sourceFolder": "./images",
-                "sourceFiles": ["**/*.{jpg,png,gif,svg}"],
-                "destinationFolder": "/images"
-            },
-            {
-                "title": "fonts",
-                "sourceFolder": "./fonts",
-                "sourceFiles": ["**/*"],
-                "destinationFolder": "/fonts"
-            },
-            {
-                "title": "template parts",
-                "sourceFolder": "./template-parts",
-                "sourceFiles": ["**/*.php"],
-                "destinationFolder": "/template-parts"
-            },
-            {
-                "title": "inc",
-                "sourceFolder": "./inc",
-                "sourceFiles": ["*.php"],
-                "destinationFolder": "/inc"
-            },
-            {
-                "title": "languages",
-                "sourceFolder": "./languages",
-                "sourceFiles": ["*.{pot,txt}"],
-                "destinationFolder": "/languages"
-            },
-            {
-                "title": "vendor",
-                "sourceFolder": "./vendor",
-                "sourceFiles": ["**/*"],
-                "destinationFolder": "/vendor"
-            }
-        ],
-        "cleanFiles": ["./dist/**/*"]
-    }
+	"copy": [
+		{
+			"title": "fonts",
+			"sourceFolder": "./example/src/fonts",
+			"sourceFiles": ["*.{woff,woff2}"],
+			"destinationFolder": "./fonts"
+		},
+		{
+			"title": "images",
+			"sourceFolder": "./example/src/images",
+			"sourceFiles": ["*.{jpg,png,gif,svg}"],
+			"destinationFolder": "./images"
+		}
+	],
+	"scripts": {
+		"files": [
+			{
+				"sourceFiles": ["./example/src/js/script.js"],
+				"destinationFolder": "./js",
+				"outputName": "script.js"
+			}
+		],
+		"cleanFiles": ["./js/*.{js,map}"]
+	},
+	"styles": {
+		"files": [
+			{
+				"sourceFiles": ["*.scss"],
+				"sourceFolder": "./example/src/scss/",
+				"destinationFolder": "./css",
+				//"outputName": "script.js"
+			}
+		],
+		"sourceFiles": ["./example/src/scss/*.scss"],
+		"destinationFolder": "./css",
+		"cleanFiles": ["./css/*.{css,map}"]
+	},
+	"dist": {
+		"packageName": "master-builder",
+		"readmeName": "./example/readme.txt",
+		"distRoot": "./dist",
+		"files": [
+			{
+				"title": "root",
+				"sourceFolder": "./example",
+				"sourceFiles": ["*.{php,html,txt,png,css}", "LICENSE"],
+				"destinationFolder": ""
+			},
+			{
+				"title": "scripts",
+				"sourceFolder": "./js",
+				"sourceFiles": ["*.js"],
+				"destinationFolder": "/js"
+			},
+			{
+				"title": "styles",
+				"sourceFolder": "./css",
+				"sourceFiles": ["*.css"],
+				"destinationFolder": "/css"
+			},
+			{
+				"title": "images",
+				"sourceFolder": "./images",
+				"sourceFiles": ["**/*.{jpg,png,gif,svg}"],
+				"destinationFolder": "/images"
+			},
+			{
+				"title": "fonts",
+				"sourceFolder": "./fonts",
+				"sourceFiles": ["**/*"],
+				"destinationFolder": "/fonts"
+			},
+			{
+				"title": "template parts",
+				"sourceFolder": "./template-parts",
+				"sourceFiles": ["**/*.php"],
+				"destinationFolder": "/template-parts"
+			},
+			{
+				"title": "inc",
+				"sourceFolder": "./inc",
+				"sourceFiles": ["*.php"],
+				"destinationFolder": "/inc"
+			},
+			{
+				"title": "languages",
+				"sourceFolder": "./languages",
+				"sourceFiles": ["*.{pot,txt}"],
+				"destinationFolder": "/languages"
+			},
+			{
+				"title": "vendor",
+				"sourceFolder": "./vendor",
+				"sourceFiles": ["**/*"],
+				"destinationFolder": "/vendor"
+			}
+		],
+		"cleanFiles": ["./dist/**/*"]
+	}
 }
