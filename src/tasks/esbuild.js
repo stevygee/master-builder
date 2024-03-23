@@ -1,6 +1,9 @@
 import { config } from '../config.js';
 import { envPlugin as notifierPlugin } from '../notifier.js';
 
+import log from 'fancy-log';
+import colors from 'ansi-colors';
+
 import { glob } from 'glob';
 
 import * as esbuild from 'esbuild';
@@ -21,13 +24,34 @@ export default async function perform() {
 
 	// loop through files in config and fill an array with entry points
 
+	let inputFiles = [];
 	// scripts
 	if ( config.scripts.files ) {
+		inputFiles.push( ...config.scripts.files );
+	}
+	// styles
+	if ( config.styles.files ) {
+		inputFiles.push( ...config.styles.files );
+	}
+
+	let legacyScriptsCount = 0;
+	let legacyStylesCount  = 0;
+
+	// scripts: legacy mode
+	if ( config.scripts.files ) {
 		for ( let v of config.scripts.files ) {
+			// uses new format, skip
+			if ( 'sourceFolder' in v ) {
+				//console.log('skip in legacy mode', v.outputName);
+				continue;
+			}
+
 			for ( let f of v.sourceFiles ) {
 				let input = v.outputName;
 				let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
+
 				entryPoints.push( { in: f, out: v.destinationFolder + '/' + outputName } );
+				legacyScriptsCount++;
 			}
 		}
 	}
@@ -42,13 +66,28 @@ export default async function perform() {
 				outputName = outputName.replace( 'src/', '' ); // Assume base dir (known limitation)
 
 				entryPoints.push( { in: f, out: config.styles.destinationFolder + '/' + outputName } );
+				legacyStylesCount++;
 			}
 		}
 	}
 
-	// styles
-	if ( config.styles.files ) {
-		for ( let v of config.styles.files ) {
+	if ( legacyScriptsCount > 0 ) {
+		log( colors.bold( colors.red( `Building ${legacyScriptsCount} scripts in legacy format, consider updating your config.` ) ) );
+	}
+
+	if ( legacyStylesCount > 0 ) {
+		log( colors.bold( colors.red( `Building ${legacyStylesCount} styles in legacy format, consider updating your config.` ) ) );
+	}
+
+	// collect entry points
+	if ( inputFiles ) {
+		for ( let v of inputFiles ) {
+			// doesn't use new format, skip
+			if ( ! 'sourceFolder' in v ) {
+				//console.log('skip in new mode', v.outputName);
+				continue;
+			}
+
 			let outputPattern = v.outputName;
 			outputPattern = outputPattern.substr( 0, outputPattern.lastIndexOf('.') ) || outputPattern; // remove file extension
 

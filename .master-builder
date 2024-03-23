@@ -16,9 +16,10 @@
 	"scripts": {
 		"files": [
 			{
-				"sourceFiles": ["./example/src/js/script.js"],
+				"sourceFolder": "./example/src/js/",
+				"sourceFiles": ["script.js"],
 				"destinationFolder": "./js",
-				"outputName": "script.js"
+				"outputName": "[name].js"
 			}
 		],
 		"chunkNames": "./js/[name]-[hash]",
