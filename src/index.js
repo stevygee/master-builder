@@ -7,16 +7,14 @@ import scriptsStyles from './tasks/esbuild.js';
 import dist from './tasks/dist.js';
 import compress from './tasks/compress.js';
 
-const delay = ms => new Promise( res => setTimeout( res, ms ) );
+import log from 'fancy-log';
 
 async function asyncTask1() {
 	await scriptsStyles();
-	//console.log('task 1 done');
 }
 
 async function asyncTask2() {
 	await copy();
-	//console.log('task 2 done');
 }
 
 async function runScriptsStylesCopyInParallel() {

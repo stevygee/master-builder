@@ -24,7 +24,7 @@ export default async function perform() {
 		for ( let f of v.sourceFiles ) {
 			let input = v.outputName;
 			let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
-			entryPoints.push( { in: f, out: outputName } );
+			entryPoints.push( { in: f, out: v.destinationFolder + '/' + outputName } );
 		}
 	}
 
@@ -32,39 +32,35 @@ export default async function perform() {
 	for ( let v of config.styles.sourceFiles ) {
 		const fileNames = await glob( v );
 		for ( let f of fileNames ) {
-			entryPoints.push( f );
+			//entryPoints.push( f );
+			let input = f;
+			let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
+			outputName = outputName.replace( 'src/', '' ); // TODO: Detect base dir??
+
+			//console.log( { in: f, out: config.styles.destinationFolder + '/' + outputName } );
+			entryPoints.push( { in: f, out: config.styles.destinationFolder + '/' + outputName } );
 		}
 	}
 
 	let settings = {
-		/*entryPoints: [
-			{ in: './example/src/js/script.js', out: 'script' },
-			'./example/src/scss/style.scss',
-		],*/
 		entryPoints,
 		bundle: true,
 		splitting: true,
+		chunkNames: './js/[name]-[hash]',
 		write: true,
 		minify: config.env.mode === 'production',
 		sourcemap: config.env.mode === 'development',
 		format: 'esm',
 		loader: {
 			'.js': 'jsx',
-			/*
-			'.gif': 'copy',
-			'.jpeg': 'copy',
-			'.jpg': 'copy',
-			'.png': 'copy',
-			'.svg': 'copy',
-			'.woff2': 'copy',*/
 		},
-		external: [ '*.gif', '*.jpeg', '*.jpg', '*.webp', '*.svg', '*.woff2' ],
+		external: [ '*.gif', '*.jpeg', '*.jpg', '*.png', '*.webp', '*.svg', '*.woff2', '*.woff' ],
 		/*target: [
-			'es2017', // Allow target override (instead of browserslist)
+			'es2017', // TODO: Allow target override (instead of browserslist)
 		],*/
 		//metafile: true,
 		logLevel: 'info',
-		outdir: 'dist', // TODO: Multiple?
+		outdir: './',
 		plugins: [
 			esbuildPluginBrowserslist( browserslist(), {
 				printUnknownTargets: false,
