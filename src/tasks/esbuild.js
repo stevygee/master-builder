@@ -67,6 +67,8 @@ export default async function perform() {
 			} ),
 			// TODO: Try different SASS plugin if source maps don't work here and browserlist won't get found
 			sassPlugin( {
+				embedded: true,
+				//type: 'local-css',
 				async transform( source, resolveDir ) {
 					const { css } = await postcss( [
 						autoprefixer,
