@@ -12,6 +12,7 @@ A reusable SCSS / JS builder, now based on esbuild!
 - Sass / SCSS
 - PostCSS
 - Autoprefixer
+- Browserslist support
 - Copy additional files
 - Compress all files into a ZIP
 - etc.
