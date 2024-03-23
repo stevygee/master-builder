@@ -27,14 +27,12 @@
 	"styles": {
 		"files": [
 			{
-				"sourceFiles": ["*.scss"],
 				"sourceFolder": "./example/src/scss/",
+				"sourceFiles": ["style.scss"],
 				"destinationFolder": "./css",
-				//"outputName": "script.js"
+				"outputName": "[name].css"
 			}
 		],
-		"sourceFiles": ["./example/src/scss/*.scss"],
-		"destinationFolder": "./css",
 		"cleanFiles": ["./css/*.{css,map}"]
 	},
 	"dist": {

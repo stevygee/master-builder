@@ -19,26 +19,54 @@ import {
 export default async function perform() {
 	let entryPoints = [];
 
-	// loop through files in scripts config and fill an array with entry points
-	for ( let v of config.scripts.files ) {
-		for ( let f of v.sourceFiles ) {
-			let input = v.outputName;
-			let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
-			entryPoints.push( { in: f, out: v.destinationFolder + '/' + outputName } );
+	// loop through files in config and fill an array with entry points
+
+	// scripts
+	if ( config.scripts.files ) {
+		for ( let v of config.scripts.files ) {
+			for ( let f of v.sourceFiles ) {
+				let input = v.outputName;
+				let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
+				entryPoints.push( { in: f, out: v.destinationFolder + '/' + outputName } );
+			}
 		}
 	}
 
-	// loop through files in styles config and fill an array with entry points
-	for ( let v of config.styles.sourceFiles ) {
-		const fileNames = await glob( v );
-		for ( let f of fileNames ) {
-			//entryPoints.push( f );
-			let input = f;
-			let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
-			outputName = outputName.replace( 'src/', '' ); // TODO: Detect base dir??
+	// styles: legacy mode
+	if ( config.styles.sourceFiles ) {
+		for ( let v of config.styles.sourceFiles ) {
+			const fileNames = await glob( v );
+			for ( let f of fileNames ) {
+				let input = f;
+				let outputName = input.substr( 0, input.lastIndexOf('.') ) || input; // remove file extension
+				outputName = outputName.replace( 'src/', '' ); // Assume base dir (known limitation)
 
-			//console.log( { in: f, out: config.styles.destinationFolder + '/' + outputName } );
-			entryPoints.push( { in: f, out: config.styles.destinationFolder + '/' + outputName } );
+				entryPoints.push( { in: f, out: config.styles.destinationFolder + '/' + outputName } );
+			}
+		}
+	}
+
+	// styles
+	if ( config.styles.files ) {
+		for ( let v of config.styles.files ) {
+			let outputPattern = v.outputName;
+			outputPattern = outputPattern.substr( 0, outputPattern.lastIndexOf('.') ) || outputPattern; // remove file extension
+
+			for ( let v2 of v.sourceFiles ) {
+				const filePath = v.sourceFolder + v2;
+				const fileNames = await glob( filePath );
+
+				for ( let f of fileNames ) {
+					let outputName = './' + f;
+					outputName = outputName.replace( v.sourceFolder, '' ); // remove base dir
+					outputName = outputName.substr( 0, outputName.lastIndexOf('.') ) || outputName; // remove file extension
+					outputName = outputPattern.replace( '[name]', outputName ); // apply pattern
+					outputName = v.destinationFolder + '/' + outputName; // add dest dir
+
+					//console.log('entryPoints', { in: f, out: outputName });
+					entryPoints.push( { in: f, out: outputName } );
+				}
+			}
 		}
 	}
 
