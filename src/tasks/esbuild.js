@@ -45,8 +45,8 @@ export default async function perform() {
 	let settings = {
 		entryPoints,
 		bundle: true,
-		splitting: true,
-		chunkNames: './js/[name]-[hash]',
+		splitting: config.scripts.chunkNames ? true : false,
+		chunkNames: config.scripts.chunkNames ? config.scripts.chunkNames : './js/[name]-[hash]',
 		write: true,
 		minify: config.env.mode === 'production',
 		sourcemap: config.env.mode === 'development',

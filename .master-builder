@@ -21,6 +21,7 @@
 				"outputName": "script.js"
 			}
 		],
+		"chunkNames": "./js/[name]-[hash]",
 		"cleanFiles": ["./js/*.{js,map}"]
 	},
 	"styles": {
