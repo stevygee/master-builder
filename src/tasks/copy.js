@@ -5,8 +5,7 @@ import colors from 'ansi-colors';
 
 import cpy from 'cpy';
 import path from 'path';
-import { glob } from 'glob';
-import { watchFile } from 'node:fs';
+import { watch } from 'node:fs';
 import { stat } from 'fs/promises';
 
 export async function copyFiles( files, destinationPathPrefix = '', includePaths = [] ) {
@@ -34,8 +33,10 @@ export async function copyFiles( files, destinationPathPrefix = '', includePaths
 	} ) );
 }
 
-async function copyFile( f, files ) {
-	const fileExists = await stat( f )
+async function copyFile( dir, filename, allFiles ) {
+	let filepath = path.resolve( dir, filename );
+
+	const fileExists = await stat( filepath )
 		.then(() => true)
 		.catch(() => false);
 
@@ -45,11 +46,10 @@ async function copyFile( f, files ) {
 	}
 
 	// Get absolute path
-	let includePaths = [];
-	includePaths.push( path.resolve( f ) );
+	let includePaths = [ filepath ];
 
 	// Copy only changed file
-	await copyFiles( files, '', includePaths );
+	await copyFiles( allFiles, '', includePaths );
 }
 
 export default async function perform() {
@@ -60,18 +60,18 @@ export default async function perform() {
 
 	await copyFiles( config.copy );
 
-	// Watch files
-	for ( let v2 of config.copy ) {
-		for ( let v of v2.sourceFiles ) {
-			const filePath = v2.sourceFolder.endsWith( '/' ) ? v2.sourceFolder + v : v2.sourceFolder + '/' + v;
-			const fileNames = await glob( filePath );
+	if ( config.env.mode !== 'development' ) {
+		return;
+	}
 
-			for ( let f of fileNames ) {
-				watchFile( f, (curr, prev) => {
-					log( `File changed: ${colors.magenta( f )}` );
-					copyFile( f, config.copy );
-				} );
+	// Watch folders
+	for ( let v of config.copy ) {
+		watch( v.sourceFolder, ( eventType, filename ) => {
+			// Only process events containing a filename
+			if ( filename ) {
+				log( `File changed: ${colors.magenta( filename )}` );
+				copyFile( v.sourceFolder, filename, config.copy );
 			}
-		}
+		} );
 	}
 }
