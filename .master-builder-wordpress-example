@@ -1,4 +1,18 @@
 {
+	"copy": [
+		{
+			"title": "fonts",
+			"sourceFolder": "./example/src/fonts",
+			"sourceFiles": ["*.{woff,woff2}"],
+			"destinationFolder": "./fonts"
+		},
+		{
+			"title": "images",
+			"sourceFolder": "./example/src/images",
+			"sourceFiles": ["*.{jpg,png,gif,svg}"],
+			"destinationFolder": "./images"
+		}
+	],
 	"scripts": {
 		"files": [
 			{
@@ -51,6 +65,42 @@
 				"sourceFolder": "./css",
 				"sourceFiles": ["*.css"],
 				"destinationFolder": "/css"
+			},
+			{
+				"title": "images",
+				"sourceFolder": "./images",
+				"sourceFiles": ["**/*.{jpg,png,gif,svg}"],
+				"destinationFolder": "/images"
+			},
+			{
+				"title": "fonts",
+				"sourceFolder": "./fonts",
+				"sourceFiles": ["**/*"],
+				"destinationFolder": "/fonts"
+			},
+			{
+				"title": "template parts",
+				"sourceFolder": "./template-parts",
+				"sourceFiles": ["**/*.php"],
+				"destinationFolder": "/template-parts"
+			},
+			{
+				"title": "inc",
+				"sourceFolder": "./inc",
+				"sourceFiles": ["*.php"],
+				"destinationFolder": "/inc"
+			},
+			{
+				"title": "languages",
+				"sourceFolder": "./languages",
+				"sourceFiles": ["*.{pot,txt}"],
+				"destinationFolder": "/languages"
+			},
+			{
+				"title": "vendor",
+				"sourceFolder": "./vendor",
+				"sourceFiles": ["**/*"],
+				"destinationFolder": "/vendor"
 			}
 		],
 		"cleanFiles": ["./dist/**/*"]
