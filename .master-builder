@@ -17,7 +17,14 @@
 		"files": [
 			{
 				"sourceFolder": "./example/src/js/",
-				"sourceFiles": ["script.js"],
+				"sourceFiles": ["entry1.js", "entry2.js"],
+				"destinationFolder": "./js",
+				"outputName": "[name].js",
+				"format": "esm"
+			},
+			{
+				"sourceFolder": "./example/src/js/",
+				"sourceFiles": ["legacy.js"],
 				"destinationFolder": "./js",
 				"outputName": "[name].js"
 			}

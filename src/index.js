@@ -9,23 +9,34 @@ import compress from './tasks/compress.js';
 
 import log from 'fancy-log';
 
-async function asyncTask1() {
-	await scriptsStyles();
+async function asyncScriptModulesAndStyles() {
+	await scriptsStyles( 'esm', true );
 }
 
-async function asyncTask2() {
+async function asyncScript() {
+	await scriptsStyles( 'iife', false );
+}
+
+async function asyncCopy() {
 	await copy();
 }
 
 async function runScriptsStylesCopyInParallel() {
 	try {
-		const task1 = asyncTask1();
-		const task2 = asyncTask2();
+		const task1 = asyncScriptModulesAndStyles();
+		const task2 = asyncScript();
+		const task3 = asyncCopy();
 
-		await Promise.all( [ task1, task2 ] );
+		await Promise.all( [ task1, task2, task3 ] );
 	} catch ( error ) {
 		log( 'Oops! An error occurred while running tasks:', error );
 	}
+}
+
+async function runScriptsStylesCopyInSeries() {
+	await asyncScriptModulesAndStyles();
+	await asyncScript();
+	await asyncCopy();
 }
 
 export async function performTask( taskName ) {
@@ -47,8 +58,7 @@ export async function performTask( taskName ) {
 		default:
 			await init();
 			await clean();
-			await scriptsStyles();
-			await copy();
+			await runScriptsStylesCopyInSeries();
 			break;
 	}
 }

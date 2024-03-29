@@ -19,7 +19,7 @@ import {
 	resolveToEsbuildTarget,
 } from 'esbuild-plugin-browserslist';
 
-export default async function perform() {
+export default async function perform( scriptsMode, stylesMode ) {
 	let entryPoints = [];
 
 	// loop through files in config and fill an array with entry points
@@ -30,7 +30,7 @@ export default async function perform() {
 		inputFiles.push( ...config.scripts.files );
 	}
 	// styles
-	if ( config.styles.files ) {
+	if ( config.styles.files && stylesMode ) {
 		inputFiles.push( ...config.styles.files );
 	}
 
@@ -57,7 +57,7 @@ export default async function perform() {
 	}
 
 	// styles: legacy mode
-	if ( config.styles.sourceFiles ) {
+	if ( config.styles.sourceFiles && stylesMode ) {
 		for ( let v of config.styles.sourceFiles ) {
 			const fileNames = await glob( v );
 			for ( let f of fileNames ) {
@@ -102,22 +102,30 @@ export default async function perform() {
 					outputName = outputPattern.replace( '[name]', outputName ); // apply pattern
 					outputName = v.destinationFolder + '/' + outputName; // add dest dir
 
-					//console.log('entryPoints', { in: f, out: outputName });
-					entryPoints.push( { in: f, out: outputName } );
+					// Collect ESM and IIFE entry points separately
+					if ( ( scriptsMode === 'esm' && 'format' in v && v.format === 'esm' ) ||
+						( ! 'format' in v || v.format !== 'esm' ) ) {
+						//console.log('entryPoints', { in: f, out: outputName });
+						entryPoints.push( { in: f, out: outputName } );
+					}
 				}
 			}
 		}
 	}
 
+	if ( entryPoints.length < 1 ) {
+		return;
+	}
+
 	let settings = {
 		entryPoints,
 		bundle: true,
-		splitting: config.scripts.chunkNames ? true : false,
+		splitting: scriptsMode === 'esm' && config.scripts.chunkNames ? true : false,
 		chunkNames: config.scripts.chunkNames ? config.scripts.chunkNames : './js/[name]-[hash]',
 		write: true,
 		minify: config.env.mode === 'production',
 		sourcemap: config.env.mode === 'development',
-		format: 'esm',
+		format: scriptsMode === 'esm' ? 'esm' : 'iife',
 		loader: {
 			'.js': 'jsx',
 		},

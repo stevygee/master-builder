@@ -1,4 +1,9 @@
 /**
+ * Internal dependencies
+ */
+import { helloWorld } from './_shared.js';
+
+ /**
  * External dependencies
  */
 const isUndefined = require('lodash/isUndefined');
@@ -28,3 +33,5 @@ console.log(
     'align-items-center': ! imaginaryValue,
   } )
 );
+
+helloWorld( 'legacy.js' );
