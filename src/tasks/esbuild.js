@@ -19,19 +19,20 @@ import {
 	resolveToEsbuildTarget,
 } from 'esbuild-plugin-browserslist';
 
-export default async function perform( scriptsMode, stylesMode ) {
+export default async function perform( scriptsFormat, processStyles ) {
 	let entryPoints = [];
 
 	// loop through files in config and fill an array with entry points
 
-	let inputFiles = [];
+	let inputFiles = { scripts: [], styles: [] };
+
 	// scripts
 	if ( config.scripts.files ) {
-		inputFiles.push( ...config.scripts.files );
+		inputFiles.scripts.push( ...config.scripts.files );
 	}
 	// styles
-	if ( config.styles.files && stylesMode ) {
-		inputFiles.push( ...config.styles.files );
+	if ( config.styles.files && processStyles ) {
+		inputFiles.styles.push( ...config.styles.files );
 	}
 
 	let legacyScriptsCount = 0;
@@ -57,7 +58,7 @@ export default async function perform( scriptsMode, stylesMode ) {
 	}
 
 	// styles: legacy mode
-	if ( config.styles.sourceFiles && stylesMode ) {
+	if ( config.styles.sourceFiles && processStyles ) {
 		for ( let v of config.styles.sourceFiles ) {
 			const fileNames = await glob( v );
 			for ( let f of fileNames ) {
@@ -80,8 +81,8 @@ export default async function perform( scriptsMode, stylesMode ) {
 	}
 
 	// collect entry points
-	if ( inputFiles ) {
-		for ( let v of inputFiles ) {
+	for ( let [key, group] of Object.entries( inputFiles ) ) {
+		for ( let v of group ) {
 			// doesn't use new format, skip
 			if ( ! 'sourceFolder' in v ) {
 				//console.log('skip in new mode', v.outputName);
@@ -103,9 +104,10 @@ export default async function perform( scriptsMode, stylesMode ) {
 					outputName = v.destinationFolder + '/' + outputName; // add dest dir
 
 					// Collect ESM and IIFE entry points separately
-					if ( ( scriptsMode === 'esm' && 'format' in v && v.format === 'esm' ) ||
-						( ! 'format' in v || v.format !== 'esm' ) ) {
-						//console.log('entryPoints', { in: f, out: outputName });
+					if ( ( key === 'scripts' &&
+						( scriptsFormat === 'esm' && 'format' in v && v.format === 'esm' ) ||
+						( scriptsFormat !== 'esm' && ( ! 'format' in v || v.format !== 'esm' ) ) ) ||
+						key === 'styles' ) {
 						entryPoints.push( { in: f, out: outputName } );
 					}
 				}
@@ -120,12 +122,12 @@ export default async function perform( scriptsMode, stylesMode ) {
 	let settings = {
 		entryPoints,
 		bundle: true,
-		splitting: scriptsMode === 'esm' && config.scripts.chunkNames ? true : false,
+		splitting: scriptsFormat === 'esm' && config.scripts.chunkNames ? true : false,
 		chunkNames: config.scripts.chunkNames ? config.scripts.chunkNames : './js/[name]-[hash]',
 		write: true,
 		minify: config.env.mode === 'production',
 		sourcemap: config.env.mode === 'development',
-		format: scriptsMode === 'esm' ? 'esm' : 'iife',
+		format: scriptsFormat === 'esm' ? 'esm' : 'iife',
 		loader: {
 			'.js': 'jsx',
 		},
