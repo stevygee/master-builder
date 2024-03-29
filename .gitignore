@@ -4,5 +4,6 @@ npm-debug.log
 /.nyc_output
 /css
 /js
+/images
 /dist
 .DS_Store

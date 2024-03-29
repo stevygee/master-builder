@@ -1,4 +1,12 @@
 {
+	"copy": [
+		{
+			"title": "images",
+			"sourceFolder": "./example/images",
+			"sourceFiles": ["*.{jpg,png,gif,svg}"],
+			"destinationFolder": "./images"
+		}
+	],
 	"scripts": {
 		"files": [
 			{
@@ -51,6 +59,12 @@
 				"sourceFolder": "./css",
 				"sourceFiles": ["*.css"],
 				"destinationFolder": "/css"
+			},
+			{
+				"title": "images",
+				"sourceFolder": "./images",
+				"sourceFiles": ["**/*.{jpg,png,gif,svg}"],
+				"destinationFolder": "/images"
 			}
 		],
 		"cleanFiles": ["./dist/**/*"]
