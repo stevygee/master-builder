@@ -4,7 +4,7 @@ A reusable SCSS / JS builder, now based on esbuild!
 <img src="https://media.giphy.com/media/3ZALZoBtI1KJa/200w_d.gif" alt="Lego timelapse" width="256" height="144">
 
 ### Requirements
-- Node 12
+- Node 20
 
 ### Features
 - Super fast!
@@ -20,11 +20,11 @@ A reusable SCSS / JS builder, now based on esbuild!
 ### Getting started
 1. Add scripts to your project's package.json:
 ```
-  "scripts": {
-    "start": "master-builder",
-    "build": "master-builder build",
-    "deploy": "master-builder deploy"
-  },
+	"scripts": {
+		"start": "master-builder",
+		"build": "master-builder build",
+		"deploy": "master-builder deploy"
+	},
 ```
 2. ```npm install @stevygee/master-builder --save-dev```
 3. ```npm start```
@@ -48,10 +48,10 @@ How to add as a local dependency:
 1. Checkout this repository in a sibling directory next to your project
 2. Change the dependency path in your project's package.json:
 ```
-  "devDependencies": {
-    ...
-    "@stevygee/master-builder": "../master-builder"
-  }
+	"devDependencies": {
+		...
+		"@stevygee/master-builder": "../master-builder"
+	}
 ```
 3. Use ```npm install``` to continously update the package after you've made a change.
 
