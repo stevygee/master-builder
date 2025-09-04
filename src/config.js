@@ -1,6 +1,13 @@
 import fs from 'fs';
 
-const configPath = `${process.cwd()}/.master-builder`;
+const configNameArg = process.argv[3] && process.argv[3].startsWith('config=') ? process.argv[3].substr('config='.length) : false;
+const configName    = configNameArg || '.master-builder';
+
+if ( configNameArg ) {
+	console.log('Using config file: ' + configName);
+}
+
+const configPath = `${process.cwd()}/${configName}`;
 const configFile = fs.existsSync(configPath) ? fs.readFileSync(configPath, 'utf-8') : '{"builds":[{}]}';
 export const config = JSON.parse(configFile);
 
