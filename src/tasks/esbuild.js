@@ -158,6 +158,12 @@ export default async function perform( scriptsFormat, processStyles ) {
 		],
 	};
 
+	// Apply overrides to settings
+	let overrides = config.esbuild && config.esbuild.settings ? config.esbuild.settings : {};
+	if ( overrides ) {
+		settings = {...settings, ...overrides};
+	}
+
 	if ( config.env.mode === 'development' ) {
 		let ctx = await esbuild.context( settings );
 		await ctx.watch();
